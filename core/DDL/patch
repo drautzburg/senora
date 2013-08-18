@@ -1,0 +1,234 @@
+*** Oracle.pm.103	Sun Feb 25 17:58:27 2001
+--- Oracle.pm		Tue Feb 27 15:53:29 2001
+***************
+*** 122,127 ****
+--- 122,129 ----
+    $attr{ 'schema2' } = ( exists $args{ 'schema2' }  ) ? $args{ 'schema2' } : 1;
+    $attr{ 'resize'  } = ( exists $args{ 'resize'  }  ) ? $args{ 'resize'  } : 1;
+    $attr{ 'heading' } = ( exists $args{ 'heading' }  ) ? $args{ 'heading' } : 1;
++   $attr{ 'blksize' } = $args{ 'blksize' };
++   $attr{ 'version' } = $args{ 'version' };
+  
+    _set_sizing();
+    _get_oracle_release();
+***************
+*** 4563,4568 ****
+--- 4565,4571 ----
+  #
+  sub _generate_heading
+  {
++   $ddl = "";
+    return unless $attr{ heading };
+  
+    my ( $module, $action, $type, $list ) = @_;
+***************
+*** 4619,4625 ****
+  #
+  sub _get_oracle_release
+  {
+!   $sth = $dbh->prepare(
+        "
+         SELECT
+                banner
+--- 4622,4632 ----
+  #
+  sub _get_oracle_release
+  {
+!   $oracle_release = $attr{ version };
+! 
+!   unless ( $oracle_release )
+!   {
+!     $sth = $dbh->prepare(
+        "
+         SELECT
+                banner
+***************
+*** 4629,4643 ****
+                banner LIKE 'Oracle%'
+        ");
+  
+!   $sth->execute;
+!   ( $oracle_release ) = $sth->fetchrow_array;
+  
+!   $oracle_release =~ /((\d+)\.(\d+)\S+)/;
+!   $oracle_release = $1;
+!   $oracle_major   = $2;
+!   $oracle_minor   = $3;
+  
+!   $sth = $dbh->prepare(
+        "
+         SELECT
+                LOWER(name)
+--- 4636,4654 ----
+                banner LIKE 'Oracle%'
+        ");
+  
+!     $sth->execute;
+!     ( $oracle_release ) = $sth->fetchrow_array;
+!   }
+  
+!   (
+!     $oracle_release,
+!     $oracle_major,
+!     $oracle_minor
+!   ) = $oracle_release =~ /((\d+)\.(\d+)\S+)/;
+  
+!   if ( $attr{ heading } )
+!   {
+!     $sth = $dbh->prepare(
+        "
+         SELECT
+                LOWER(name)
+***************
+*** 4645,4672 ****
+                v\$database
+        ");
+  
+!   $sth->execute;
+!   ( $instance ) = $sth->fetchrow_array;
+! 
+!   $host = `hostname`;
+!   chomp( $host );
+  
+! #  $sth = $dbh->prepare(
+! #      "
+! #       SELECT
+! #              host_name
+! #            , instance_name
+! #            , version
+! #       FROM
+! #              v\$instance
+! #      ");
+! #
+! #  $sth->execute;
+! #  ( $host, $instance, $oracle_release ) = $sth->fetchrow_array;
+! #
+! #  $oracle_release =~ /(\d+)\.(\d+)/;
+! #  $oracle_major   = $1;
+! #  $oracle_minor   = $2;
+  }
+  
+  # sub _granted_privs
+--- 4656,4667 ----
+                v\$database
+        ");
+  
+!     $sth->execute;
+!     ( $instance ) = $sth->fetchrow_array;
+  
+!     $host = `hostname`;
+!     chomp( $host );
+!   }
+  }
+  
+  # sub _granted_privs
+***************
+*** 5905,5911 ****
+  #
+  sub _set_sizing 
+  {
+!   $sth = $dbh->prepare(
+        "
+         SELECT
+                value
+--- 5900,5913 ----
+  #
+  sub _set_sizing 
+  {
+!   $block_size = $attr{ blksize } || 0;
+!   if ( $block_size )
+!   {
+!     $block_size = sprintf( "%.0f", abs( $block_size /= 1024 ) );
+!   }
+!   else
+!   {
+!     $sth = $dbh->prepare(
+        "
+         SELECT
+                value
+***************
+*** 5915,5922 ****
+                name = 'db_block_size'
+        ");
+  
+!   $sth->execute;
+!   $block_size = $sth->fetchrow_array / 1024;
+  
+    if ( $attr{ 'resize' } == 1 )
+    {
+--- 5917,5925 ----
+                name = 'db_block_size'
+        ");
+  
+!     $sth->execute;
+!     $block_size = $sth->fetchrow_array / 1024;
+!   }
+  
+    if ( $attr{ 'resize' } == 1 )
+    {
+***************
+*** 6459,6472 ****
+  configure
+  
+  The B<configure> method is used to supply the DBI connection and to set
+! several session level options.  These are:
+  
+        dbh      A reference to a valid DBI connection (obtained via
+!                DBI->connect).  This is a mandatory argument.
+  
+!                NOTE:  The user connecting MUST have SELECT privileges
+!                      on the following (in addition to the DBA or USER
+!                      views):
+  
+                           V$VERSION
+                           V$DATABASE
+--- 6462,6476 ----
+  configure
+  
+  The B<configure> method is used to supply the DBI connection and to set
+! several session level attributes.  These are:
+  
+        dbh      A reference to a valid DBI connection (obtained via
+!                DBI->connect).  This is the only mandatory attribute.
+  
+!                NOTE: The user connecting should have SELECT privileges
+!                      on the following views (in addition to the DBA or
+!                      USER views), but see attributes 'heading', 'blksize'
+!                      and 'version' below for exceptions:
+  
+                           V$VERSION
+                           V$DATABASE
+***************
+*** 6509,6516 ****
+                 (e.g., DBA_TABLES or USER_TABLES).  The default is DBA.
+  
+        heading  Defines whether to include a Heading having Host, Instance,
+!                Date/Time, List of generated Objects, etc.  Set to "0" to
+!                suppress the heading.  The default is "1".
+  
+  new  
+  
+--- 6513,6532 ----
+                 (e.g., DBA_TABLES or USER_TABLES).  The default is DBA.
+  
+        heading  Defines whether to include a Heading having Host, Instance,
+!                Date/Time, List of generated Objects, etc.  "1" means 
+!                include the heading; "0" or "" means to suppress the
+!                heading (and eliminate the query against V$DATABASE).
+!                The default is "1".
+! 
+!       blksize  Defines the database block size.  If this attribute is
+!                supplied, you eliminate the query against V$PARAMETER.
+!                The default is to query V$PARAMETER for this value.
+! 
+!       version  A quoted string which defines the version of the database,
+!                and must be a version supported by the module (currently
+!                7.x, 8.0 and 8.1).  If this attribute is supplied, you
+!                eliminate the query against V$VERSION.  The default is to
+!                query V$VERSION for this value.
+  
+  new  
+  
+
+--0-1503168366-983308245=:20422--
+

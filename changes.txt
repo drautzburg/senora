@@ -1,0 +1,502 @@
+----------------------------
+revision 1.28
+date: 2001/05/22 19:47:59;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Fixed serveroutput
+----------------------------
+revision 1.27
+date: 2001/05/22 19:29:51;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+more Prompt issues. Handle lines without newlines at the end of scripts.
+----------------------------
+revision 1.26
+date: 2001/05/22 17:55:54;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Better prompting: no prompt when processing file. Hopefully works now.
+----------------------------
+revision 1.25
+date: 2001/05/21 19:28:02;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+fixed typo in DataDictionary.pm
+----------------------------
+revision 1.24
+date: 2001/05/21 18:17:39;  author: drautzburg;  state: Exp;  lines: +3 -0
+
+Tuning.pm
+    Added validate command
+    Added rollSegs command
+    Added ps command (processes)
+    Added hwm command (high water mark)
+    Added stat command (to print various stats)
+    Added job command (to display jobs)
+    Enhanced xqueries (to print most expensive queries)
+    Added xplain command (to show execution plans)
+    Added kept command (to show pinned code)
+    Added space command (to show tablespace stats)
+    Added waits command (to show what sessions are waitng for)
+    Added locks command (to show locks and locked objects)
+    Added show parameter
+----------------------------
+revision 1.23
+date: 2001/05/21 18:09:59;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+made describe print the realname of an object in case it is a synonym
+plus some more changes.
+----------------------------
+revision 1.22
+date: 2001/05/21 18:08:09;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Enhanced formatting of columns containing newlines: break at newline
+if possible. Nice for queries agains sqltext_with_newlines
+----------------------------
+revision 1.21
+date: 2001/05/21 18:06:05;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Extend @INC so senora can be started from anywhere
+----------------------------
+revision 1.20
+date: 2001/05/21 18:04:58;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Lots of changes in Qs module. Qs should go from CVS actually
+----------------------------
+revision 1.19
+date: 2001/05/21 18:02:07;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+added min function
+----------------------------
+revision 1.18
+date: 2001/05/21 17:47:12;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+added rollback create\s+role revoke lock analyze + /*sql*/ hint
+to force sql excution
+----------------------------
+revision 1.17
+date: 2001/05/21 17:44:44;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+ tried to give more feedback. Still needs more work.
+----------------------------
+revision 1.16
+date: 2001/05/21 17:43:25;  author: drautzburg;  state: Exp;  lines: +2 -0
+
+FdStack: played with prompts. Not satisfied yet
+----------------------------
+revision 1.15
+date: 2001/05/21 17:41:11;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+
+Added -c option to "ls" to list constraints and indexes and stuff
+----------------------------
+revision 1.14
+date: 2001/05/02 18:28:51;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Trying to improve Windows compatibilty. Startetd xplain in Tuning.pm
+----------------------------
+revision 1.13
+date: 2001/04/30 02:30:27;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Fixed bug when lines contain lonely semicolon
+----------------------------
+revision 1.12
+date: 2001/04/30 01:24:33;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Added support for bind variables including the new commands
+VARIABLE and PRINT.
+----------------------------
+revision 1.11
+date: 2001/04/28 14:07:08;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Moved printError from SqlSession to Feedback
+
+
+** SENORA 2.5
+
+----------------------------
+revision 1.10
+date: 2001/04/28 13:31:21;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+updated README
+----------------------------
+revision 1.9
+date: 2001/04/28 13:27:51;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Fixed bug in reporting success of ALTER SESSION command.
+----------------------------
+revision 1.8
+date: 2001/04/28 13:15:22;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Fixed bug in set serveroutput: on/off status was incorrectly reported
+when sessions were switched.
+----------------------------
+revision 1.7
+date: 2001/04/28 13:07:00;  author: drautzburg;  state: Exp;  lines: +1 -0
+
+Fixed ampersandReplace so the period is ignored in &foo.bar
+----------------------------
+revision 1.6
+date: 2001/04/28 12:58:45;  author: drautzburg;  state: Exp;  lines: +4 -1
+
+Added PROMPT command
+----------------------------
+revision 1.5
+date: 2001/04/28 12:55:46;  author: drautzburg;  state: Exp;  lines: +2 -3
+*** empty log message ***
+----------------------------
+revision 1.4
+date: 2001/04/26 23:50:04;  author: drautzburg;  state: Exp;  lines: +2 -1
+
+no comment
+----------------------------
+revision 1.3
+date: 2001/04/26 23:31:26;  author: drautzburg;  state: Exp;  lines: +2 -4
+
+Added REM and -- comments
+----------------------------
+revision 1.2
+date: 2001/04/24 20:52:30;  author: drautzburg;  state: Exp;  lines: +2 -1
+
+no comment
+----------------------------
+revision 1.1
+date: 2001/03/13 18:58:40;  author: drautzburg;  state: Exp;
+branches:  1.1.1;
+Initial revision
+----------------------------
+revision 1.1.1.1
+date: 2001/03/13 18:58:40;  author: drautzburg;  state: Exp;  lines: +0 -0
+
+4th attempt of initial checkin
+=============================================================================
+martin@beaureve:~/projects/senora/senora$ 
+
+Wed May 23 23:50:45 CEST 2001
+Thu May 24 00:06:43 CEST 2001
+Fri Dec 21 19:57:04 CET 2001
+Sun Dec 30 01:02:49 CET 2001
+Sun Dec 30 01:04:43 CET 2001
+Sun Dec 30 01:05:23 CET 2001
+Sun Dec 30 01:06:11 CET 2001
+Mon Dec 31 21:34:54 CET 2001
+Mon Dec 31 21:37:08 CET 2001
+Mon Dec 31 21:38:04 CET 2001
+Mon Dec 31 21:57:06 CET 2001
+
+* 20.05.2003 10:10 
+Fixed grep command to ignore LONG columns
+
+* 02.10.2003 09:35 
+Added possibility to login as sysoper or sysdba (require DBD-Oracle
+for oci8  
+
+* 06.10.2003 17:13 
+Fixed bug in profiler: did not separate reported statements properly.
+
+* 07.10.2003 18:50 
+Fixed problem loggin in without service name. Problem was detected by
+Ganesh R on sourceforge. The fix was by anonymous also on sourceforge
+
+* 07.11.2003 09:42
+Changed "space -d" for better performance on Oracle9
+
+* 16.01.2004 16:58 Ireland
+Changed get serveroutput, so nothing is done if serveroutput is off
+
+* 21.01.2004 14:08 
+truncated number of decimals in ps -l command
+
+* 03.03.2004 09:44 
+System tools read registry to get ORACLE_HOME
+
+* 16.03.2004 18:49 
+Fixed error running a script from cmdline
+
+* 17.03.2004 00:08 
+added /nolog option
+Fixed many problems when running scrips
+Fixed handling of /* ... */ comments in a single line
+
+* 17.03.2004 16:32 
+Made all settings case insensitive.
+
+* 18.03.2004 16:00 
+Removed Quotes from defines
+
+* 06.05.2004 11:18 
+Added reporting of fetch errors like in "select 1/0 from dual;"
+
+* 10.05.2004 09:29 
+moved dropAll from Sqlplus.pm to Reorg.pm
+
+* 19.05.2004 13:51 
+Added chipach's change to ignore idle wait events
+Added chipach's for readline (exit ob newline)
+Provided a way to connect without password and then prompt for it 
+  (This requires Term::ReadKey and does not work in Emacs shell-mode)
+Fixed push/pop of settings. Revamped the machnism altogether
+Fixed Template command to include use SessionMgr qw(sessionNr sql);
+
+* 24.05.2004 14:24 
+Changed Spm.pm (a private plugin) "pimp" comand  
+
+* 08.06.2004 12:16 SPL sortplan interface
+Fixed DropAll so lowercase objects can be dropped
+
+* 24.06.2004 22:09 
+Started the Third.pm plugin (SIEMENS stuff, not for public use)
+
+Upgraded to perl 5.8.3 so I could use the driver from
+ftp.esoftmatic.com/outgoing/DBI/5.8.2/DBD-Oracle.ppd
+get better error messages now. Got a new perl2exe (paid!)
+
+Beautified chacheStats a bit (still ugly)
+
+* 02.07.2004 14:27 
+Changed the "refs" command so only tables are shown and
+not table parititions.
+
+* 08.07.2004 11:43 
+Added table and column comments to "describe" table
+
+* 19.10.2004 16:11 
+Fixed CREATE TRIGGER which was not recognized as plsql
+
+* 24.11.2004 11:34 
+Added Tuning::openCursors
+
+Added Tuninng::alertLog to look at the alert log from the instance
+This uses external tables (9i only) or utl_file. Very slow on large alert
+logs and somewhat experimental
+
+* 30.11.2004 10:23 
+Added better error reporting in profiler.
+
+* 02.02.2005 11:07 
+Fixed SqlSession::execute so no exceptions are raised and
+the error messages look nicer.
+
+* 19.10.2005 11:07 
+Fixed define command so definition can contain equals sign
+
+* 15.12.2005 10:08 
+Started using GV$ views instead of v$ so "ps" works with a cluster
+xxx unfinished !
+
+* 16.01.2006 16:50 ADMSPM miogrationMgr
+Added "Used" space columns to space command
+
+* 23.01.2006 18:29 
+Added SystemTools.genDrops to generate drop statements from CREATEs
+
+* 31.01.2006 09:09 
+Local: changed tversions to break on whitespace instead of " ["
+
+* 16.03.2006 15:29 
+Added PURGE as accepted SQL command starter
+Renamed the internal purge command to "chop"
+
+* 28.03.2006 10:56 
+Added hash value output to xplain so execution plans can be compared
+for equality easily 
+
+* 04.05.2006 09:29 
+Fixed ps command to work on a cluster, using the GV$ views.
+Changed the default ordering of "ps" output, so heavy session
+are displayed last (if -l option is used)
+
+* 29.05.2006 16:24 
+Obsoleted FdStack. Made sure at startup login.sra or login.sql is run
+but not both.
+
+* 29.05.2006 16:25 
+Added LegacySql and examples. This allows you to use legacy scripts
+(including Oracle's admin scripts) as senora commands.
+
+* 31.05.2006 09:42 
+Made currentStatement cluster aware (GV$ views
+Made waits cluster aware)
+
+* 06.07.2006 16:16 CH REMA tuning
+Added timings to sql output like
+Elapsed: prepare+execute = 10 msec; fetch= 3220 msec; total= 3230 msec
+
+* 06.07.2006 16:17 CH REMA tuning
+Made the name of the stattab an option in the anas (analyzeSchema) command. 
+Useful for importing and exporting statistics.
+
+* 01.09.2006 14:48 
+Made "locks" cluster aware
+
+* 14.03.2007 16:13 
+Current Statement can now show the real(!) execution plan
+
+* 15.03.2007 13:24 
+Renamed stat to sesstat and anas to stat
+Improved dbms_stats wrapper ("stat")
+Added "set nop" for better testing
+
+* 16.03.2007 09:02 
+Added "edit" option for tnsnames
+
+* 03.04.2007 14:55 
+Fixed jobs -r (Broken='Y', not 'T')
+Fixed small bug in explain plan of current statement
+
+* 10.05.2007 15:19 
+Fixed small bug in desc -l
+
+* 15.06.2007 12:49 
+Fixed "set drop errors"
+
+* 19.06.2007 10:21 
+Added -v option to "ls" (exclude names)
+
+* 03.07.2007 10:02 
+Convert binary doubles into integer to e.g. display "4" instead of
+"4.0E+000"  by default
+
+* 29.08.2007 11:22 
+Added DataDictionary.codeLine to view selected parts of source code
+
+* 12.09.2007 09:49 
+Added options -A (active) -U (user sessions) to ps command#
+
+* 16.11.2007 12:12 
+Beautifed qerr output (internal)
+
+* 19.02.2008 13:27 
+Fixed bug in Tuning.currentStatement: it showed the prev statement when 
+asked to also show the execution plan.
+
+* 03.03.2008 14:26 
+Disabled readline support for Windows. A Backspace caused access violation when
+compiled with perl2exe
+
+* 17.04.2008 09:39 
+Changed the rebuild_indexes (rix) command so partitioned indexes are properly
+handled
+
+* 04.08.2008 13:53 
+Fixed small bug in SystemTools.genDrop
+
+* 04.11.2008 10:19 
+Added -s option to openCursors to show only one SID
+
+* 08.01.2009 11:54 
+Added the possibility to change the PATH and ORACLE_HOME via an "environment" file to
+simplify using different Oracle versions without having to write a wrapper batch file. This
+also helps running Senora on 64 bit systems, if you install a 32bit Oracle Instant Client.
+
+* 30.04.2009 10:35 
+Replaced head by cat and made head an alias of cat. You can now
+specify extra clauses both for head and for cat. 
+
+local * 06.05.2009 17:20 
+local Added releaseSpace command
+
+* 08.06.2009 17:04 
+Added "WITH" as a valid SQL starter
+
+* 28.07.2009 10:35 
+Added "MERGE" as a valid SQL starter
+
+* 10.08.2009 15:25 
+Login file is now reported correctly at startup.
+
+* 21.10.2009 10:17 
+Sort commands alpahbetically in "help" command
+
+local * 21.10.2009 11:30 
+local Refactored Third, renamed several functions so they start with "find_"
+local Added find_cops()
+
+* 23.10.2009 16:16 
+cstatement now also prints the current bind parameters for the current statement
+
+local * 06.11.2009 10:16 
+local Made tprofile safe to run against traces from multiple sessions
+
+local * 10.11.2009 17:07 
+local added -p option to tprof to find hotspots in db_trace
+
+* 16.12.2009 09:59 
+Fixed Feedback so "create or replace FORCE view xxx" is properly reported
+as "view xxx created."
+
+* 21.12.2009 14:42 
+Fixed execution plan display in cstatement so it can handle child cursors.
+Before this sometimes lead to an infinie loop
+
+* 14.01.2010 09:53 
+Report Elapsed time not only for "select" operations
+
+* 20.01.2010 14:35 
+Added and SQL beautifer to show current statement pretty printed
+
+* 21.01.2010 15:38 
+Fixed currentStatement even more
+
+* 15.02.2010 11:30 
+Display last_analyzed instead of last_ddl_time in ls -l
+
+local * 17.02.2010 13:40 
+local allow blanks in method named for tprofile
+
+* 02.03.2010 15:45 
+Excluded table and index partitions from genDrop -p , because that generated
+statements like DROP TABLE PARTITION, which is not valid SQL. Thanks to
+Bernhard Lorenz for providing a fix.
+
+* 14.04.2010 10:31 
+Some required perl modules were not compiled into the the windows version. Fixed that.
+
+* 28.09.2010 17:46 
+Xplain now shows all partitions of accesses objects
+current statement shows RUNNING execution plan with accessed objects. Very useful.
+
+* 08.10.2010 09:57 
+Renamed Compare session stats and compare optimizer stats and put them both into Compare.pm. 
+The functionality wasn't changed.
+
+* 08.10.2010 11:24 
+Added checkStats to run plausibility checks over optimizer statistics (Tuning)
+
+* 17.11.2010 13:16 
+Added setRowlimit to restrict the number of rows returned by any select
+Use with care
+
+local * 18.11.2010 17:24 CA permission error
+local find_domain failed to restrict to domains/location with id=0
+local fixed that.
+
+* 25.05.2011 11:39 CA mysterious outdates
+local added gtm command to Third. Can bring an entire GTM tree up-to-date.
+
+* 09.06.2011 09:05 CA AH110607_01: Sort Plan GTM problem - X7Z1Y7
+local fixed Third.explainCode so it works with canadian alphanumeric codes
+
+* 10.06.2011 15:57  
+Excluded recyclebin objects "BIN$..." from dropAll
+
+* 21.07.2011 18:29 
+Fixed bug in current_statement which would sometimes report "no statement executing"
+
+* 21.07.2011 18:47 CA ASI hangs
+Fixed a bug which sometimes would not allow registering Plugins because @INC was
+all messed up.
+
+local 16.03.2012
+local Made the "sop" command more in line with the SOP-control funtionality
+
+* 30.03.2012 15:36 
+Added sched command to display scheduler information
+
+local * 30.05.2012 09:32 
+local Added tjournal command to browse the ADM-SPM journal
+
+* 19.06.2012 13:08
+Enhanced "find" so the source code of views is also searched
+
+local 06.05.2013 11:01 
+local Added mas command
+
+local 14.05.2013 12:09 
+local enhanced find_sortplan so the details of a sortplan can be printed.
